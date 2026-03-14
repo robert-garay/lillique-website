@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = {
   Programs: [
@@ -23,13 +24,22 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="group inline-flex flex-col">
-              <span className="font-serif text-3xl tracking-wide text-cream">
-                Lillique
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-warm-gray-light">
-                Training Institute
-              </span>
+            <Link href="/" className="group inline-flex items-center gap-3">
+              <Image
+                src="/lillique-logo.svg"
+                alt="Lillique"
+                width={44}
+                height={44}
+                className="h-11 w-11 invert"
+              />
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl tracking-wide text-cream">
+                  Lillique
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.25em] text-warm-gray-light">
+                  Training Institute
+                </span>
+              </div>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-warm-gray-light">
               Virginia&apos;s premier esthetic training institute. DPOR licensed and

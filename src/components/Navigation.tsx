@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const navLinks = [
@@ -52,13 +53,22 @@ export function Navigation() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
-        <Link href="/" className="group flex flex-col" onClick={() => setMobileOpen(false)}>
-          <span className="font-serif text-2xl tracking-wide text-charcoal lg:text-3xl">
-            Lillique
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.3em] text-warm-gray">
-            Training Institute
-          </span>
+        <Link href="/" className="group flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+          <Image
+            src="/lillique-logo.svg"
+            alt="Lillique"
+            width={40}
+            height={40}
+            className="h-9 w-9 lg:h-10 lg:w-10"
+          />
+          <div className="flex flex-col">
+            <span className="font-serif text-xl tracking-wide text-charcoal lg:text-2xl">
+              Lillique
+            </span>
+            <span className="text-[9px] uppercase tracking-[0.25em] text-warm-gray">
+              Training Institute
+            </span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
