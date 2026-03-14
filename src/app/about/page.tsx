@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
@@ -56,7 +57,7 @@ export default function AboutPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-gold">Our Mission</p>
               <h2 className="mt-4 font-serif text-4xl text-charcoal md:text-5xl">
-                Cultivating the Next Generation
+                Shaping the Next Generation
               </h2>
             </div>
             <div className="flex flex-col gap-6">
@@ -153,7 +154,13 @@ export default function AboutPage() {
               </Link>
             </div>
             <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-charcoal-light to-charcoal" />
+              <Image
+                src="/campus.png"
+                alt="Lillique Training Institute campus in Fairfax, Virginia"
+                width={600}
+                height={600}
+                className="aspect-square w-full rounded-2xl object-cover"
+              />
             </div>
           </div>
         </div>

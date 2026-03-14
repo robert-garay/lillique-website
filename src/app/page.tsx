@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const courses = [
   {
@@ -131,7 +132,13 @@ export default function Home() {
               </Link>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-rose-light to-cream-dark" />
+              <Image
+                src="/home.png"
+                alt="Esthetic training in progress — instructor guiding a student during a facial treatment"
+                width={600}
+                height={750}
+                className="aspect-[4/5] w-full rounded-2xl object-cover"
+              />
               <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-2xl border border-gold/20 bg-charcoal p-6 shadow-lg">
                 <p className="font-serif text-3xl text-gold-light">15+</p>
                 <p className="mt-1 text-[10px] uppercase tracking-wider text-warm-gray-light">
