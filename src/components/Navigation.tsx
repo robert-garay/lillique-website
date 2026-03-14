@@ -45,6 +45,7 @@ export function Navigation() {
   }, [mobileOpen]);
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
@@ -174,55 +175,80 @@ export function Navigation() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        className={`fixed inset-0 top-0 z-40 bg-cream transition-all duration-500 lg:hidden ${
-          mobileOpen
-            ? "pointer-events-auto translate-x-0 opacity-100"
-            : "pointer-events-none translate-x-full opacity-0"
-        }`}
-      >
-        <div className="flex h-full flex-col justify-center px-12">
-          <nav className="flex flex-col gap-6">
-            {navLinks.map((link) => (
-              <div key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-serif text-4xl text-charcoal transition-colors hover:text-gold"
-                >
-                  {link.label}
-                </Link>
-                {link.children && (
-                  <div className="mt-3 flex flex-col gap-2 pl-4">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="text-base text-warm-gray transition-colors hover:text-charcoal"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-          <div className="mt-12 border-t border-cream-dark pt-8">
-            <a
-              href="tel:5717324861"
-              className="text-sm tracking-wide text-warm-gray"
-            >
+    </header>
+
+    {/* Mobile menu — rendered outside header for proper z-index stacking */}
+    <div
+      className={`fixed inset-0 z-[60] bg-cream transition-all duration-500 lg:hidden ${
+        mobileOpen
+          ? "pointer-events-auto translate-x-0 opacity-100"
+          : "pointer-events-none translate-x-full opacity-0"
+      }`}
+    >
+      {/* Close button */}
+      <div className="flex items-center justify-between px-6 py-4">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+          <Image src="/lillique-logo.svg" alt="Lillique" width={36} height={36} className="h-9 w-9" />
+          <div className="flex flex-col">
+            <span className="font-serif text-xl tracking-wide text-charcoal">Lillique</span>
+            <span className="text-[9px] uppercase tracking-[0.25em] text-warm-gray">Training Institute</span>
+          </div>
+        </Link>
+        <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="flex flex-col gap-1.5">
+          <span className="block h-0.5 w-6 translate-y-2 rotate-45 bg-charcoal" />
+          <span className="block h-0.5 w-6 opacity-0 bg-charcoal" />
+          <span className="block h-0.5 w-6 -translate-y-2 -rotate-45 bg-charcoal" />
+        </button>
+      </div>
+
+      <div className="flex h-[calc(100%-72px)] flex-col overflow-y-auto px-8 pb-8 pt-4">
+        <nav className="flex flex-col gap-5">
+          {navLinks.map((link) => (
+            <div key={link.href}>
+              <Link
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="font-serif text-3xl text-charcoal transition-colors hover:text-gold"
+              >
+                {link.label}
+              </Link>
+              {link.children && (
+                <div className="mt-2 flex flex-col gap-1.5 pl-4 border-l border-cream-dark">
+                  {link.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="py-1 text-sm text-warm-gray transition-colors hover:text-charcoal"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </nav>
+
+        <div className="mt-auto border-t border-cream-dark pt-6">
+          <Link
+            href="/courses"
+            onClick={() => setMobileOpen(false)}
+            className="flex w-full items-center justify-center rounded-full bg-charcoal py-3.5 text-sm font-medium tracking-wide text-cream"
+          >
+            Enroll Now
+          </Link>
+          <div className="mt-6 flex flex-col gap-1.5">
+            <a href="tel:5717324861" className="text-sm tracking-wide text-warm-gray">
               (571) 732-4861
             </a>
-            <p className="mt-2 text-sm text-warm-gray-light">
+            <a href="mailto:info@lilliquetraining.com" className="text-sm text-warm-gray">
               info@lilliquetraining.com
-            </p>
+            </a>
           </div>
         </div>
       </div>
-    </header>
+    </div>
+    </>
   );
 }
