@@ -54,18 +54,35 @@ export function Navigation() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
         <Link href="/" className="group flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-          <Image
-            src="/lillique-logo.svg"
-            alt="Lillique"
-            width={40}
-            height={40}
-            className="h-9 w-9 lg:h-10 lg:w-10"
-          />
+          <div className="relative h-9 w-9 lg:h-10 lg:w-10">
+            <Image
+              src="/lillique-logo-white.svg"
+              alt="Lillique"
+              width={40}
+              height={40}
+              className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${
+                scrolled ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <Image
+              src="/lillique-logo.svg"
+              alt="Lillique"
+              width={40}
+              height={40}
+              className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${
+                scrolled ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </div>
           <div className="flex flex-col">
-            <span className="font-serif text-xl tracking-wide text-charcoal lg:text-2xl">
+            <span className={`font-serif text-xl tracking-wide transition-colors duration-500 lg:text-2xl ${
+              scrolled ? "text-charcoal" : "text-cream"
+            }`}>
               Lillique
             </span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-warm-gray">
+            <span className={`text-[9px] uppercase tracking-[0.25em] transition-colors duration-500 ${
+              scrolled ? "text-warm-gray" : "text-warm-gray-light"
+            }`}>
               Training Institute
             </span>
           </div>
@@ -83,7 +100,9 @@ export function Navigation() {
               >
                 <Link
                   href={link.href}
-                  className="text-sm tracking-wide text-warm-gray transition-colors hover:text-charcoal"
+                  className={`text-sm tracking-wide transition-colors duration-500 ${
+                    scrolled ? "text-warm-gray hover:text-charcoal" : "text-cream/70 hover:text-cream"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -111,7 +130,9 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm tracking-wide text-warm-gray transition-colors hover:text-charcoal"
+                className={`text-sm tracking-wide transition-colors duration-500 ${
+                  scrolled ? "text-warm-gray hover:text-charcoal" : "text-cream/70 hover:text-cream"
+                }`}
               >
                 {link.label}
               </Link>
@@ -119,7 +140,11 @@ export function Navigation() {
           )}
           <Link
             href="/courses"
-            className="rounded-full bg-charcoal px-6 py-2.5 text-sm tracking-wide text-cream transition-all hover:bg-charcoal-light"
+            className={`rounded-full px-6 py-2.5 text-sm tracking-wide transition-all duration-500 ${
+              scrolled
+                ? "bg-charcoal text-cream hover:bg-charcoal-light"
+                : "bg-gold text-charcoal hover:bg-gold-light"
+            }`}
           >
             Enroll Now
           </Link>
@@ -132,19 +157,19 @@ export function Navigation() {
           aria-label="Toggle menu"
         >
           <span
-            className={`block h-0.5 w-6 bg-charcoal transition-all duration-300 ${
-              mobileOpen ? "translate-y-2 rotate-45" : ""
-            }`}
+            className={`block h-0.5 w-6 transition-all duration-300 ${
+              scrolled || mobileOpen ? "bg-charcoal" : "bg-cream"
+            } ${mobileOpen ? "translate-y-2 rotate-45" : ""}`}
           />
           <span
-            className={`block h-0.5 w-6 bg-charcoal transition-all duration-300 ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
+            className={`block h-0.5 w-6 transition-all duration-300 ${
+              scrolled || mobileOpen ? "bg-charcoal" : "bg-cream"
+            } ${mobileOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`block h-0.5 w-6 bg-charcoal transition-all duration-300 ${
-              mobileOpen ? "-translate-y-2 -rotate-45" : ""
-            }`}
+            className={`block h-0.5 w-6 transition-all duration-300 ${
+              scrolled || mobileOpen ? "bg-charcoal" : "bg-cream"
+            } ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </div>
